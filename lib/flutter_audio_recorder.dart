@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:file/local.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 
@@ -10,7 +9,7 @@ class FlutterAudioRecorder {
   static const MethodChannel _channel =
       const MethodChannel('flutter_audio_recorder');
   static const String DEFAULT_EXTENSION = '.m4a';
-  static LocalFileSystem fs = LocalFileSystem();
+  // static LocalFileSystem fs = LocalFileSystem();
 
   String _path;
   String _extension;
@@ -53,7 +52,7 @@ class FlutterAudioRecorder {
           path += extension;
         }
       }
-      File file = fs.file(path);
+      File file = File(path);
       if (await file.exists()) {
         throw new Exception("A file already exists at the path :" + path);
       } else if (!await file.parent.exists()) {
